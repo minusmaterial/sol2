@@ -1,0 +1,2 @@
+shrum.obj
+shrum.png

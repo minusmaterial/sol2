@@ -1,0 +1,2 @@
+tri.obj
+tri.png

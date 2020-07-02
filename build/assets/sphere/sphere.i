@@ -1,0 +1,2 @@
+sphere.obj
+sphere.png

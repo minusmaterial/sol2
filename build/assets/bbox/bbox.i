@@ -1,0 +1,2 @@
+bbox.obj
+bbox.png
