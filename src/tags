@@ -15,6 +15,7 @@ COMP_RENDER	ECS/typedefs.h	/^#define COMP_RENDER /;"	d
 COREnametonotbereferencedthankyou	main.c	/^systemCore  COREnametonotbereferencedthankyou;$/;"	v	typeref:typename:systemCore
 EBO	graphics/model.h	/^	GLuint EBO;$/;"	m	struct:model	typeref:typename:GLuint
 Entity	ECS/system.h	/^	entitySystem Entity;$/;"	m	struct:__anonbc4b17ea0108	typeref:typename:entitySystem
+FIRST_ASCII_CHAR	text/text.h	/^#define FIRST_ASCII_CHAR /;"	d
 FORWARD	main.c	/^vec4 FORWARD 	= {0.0f, 0.0f, 1.0f, 0.0f};$/;"	v	typeref:typename:vec4
 GLFWID	graphics/render.h	/^    GLFWwindow* GLFWID;$/;"	m	struct:__anon7b86449b0208	typeref:typename:GLFWwindow *
 ID	ECS/entity.h	/^	COMPTYPE ID;$/;"	m	struct:__anon83875f220108	typeref:typename:COMPTYPE
@@ -23,12 +24,14 @@ ID	physics/physics.h	/^	COMPTYPE ID;$/;"	m	struct:__anon00cca4100208	typeref:typ
 ID	physics/physics.h	/^	COMPTYPE ID;$/;"	m	struct:__anon00cca4100508	typeref:typename:COMPTYPE
 Input	ECS/system.h	/^	inputSystem Input;$/;"	m	struct:__anonbc4b17ea0108	typeref:typename:inputSystem
 KEY_BACKWARD	input/input.h	/^	KEY_BACKWARD,$/;"	e	enum:inputtype
+KEY_DOWN	input/input.h	/^	KEY_DOWN,$/;"	e	enum:inputtype
 KEY_FORWARD	input/input.h	/^	KEY_FORWARD,$/;"	e	enum:inputtype
 KEY_LEFT	input/input.h	/^	KEY_LEFT,$/;"	e	enum:inputtype
 KEY_NONE	input/input.h	/^	KEY_NONE,$/;"	e	enum:inputtype
 KEY_RIGHT	input/input.h	/^	KEY_RIGHT,$/;"	e	enum:inputtype
 KEY_ROT_LEFT	input/input.h	/^	KEY_ROT_LEFT,$/;"	e	enum:inputtype
 KEY_ROT_RIGHT	input/input.h	/^	KEY_ROT_RIGHT,$/;"	e	enum:inputtype
+KEY_UP	input/input.h	/^	KEY_UP,$/;"	e	enum:inputtype
 KEY_ZOOM_IN	input/input.h	/^	KEY_ZOOM_IN,$/;"	e	enum:inputtype
 KEY_ZOOM_OUT	input/input.h	/^	KEY_ZOOM_OUT,$/;"	e	enum:inputtype
 MAX_NUM_INPUTS	input/input.h	/^#define MAX_NUM_INPUTS /;"	d
@@ -45,6 +48,7 @@ Sys	main.c	/^systemCore * Sys = & COREnametonotbereferencedthankyou;$/;"	v	typer
 UP	main.c	/^vec4 UP 		= {0.0f, 1.0f, 0.0f, 0.0f};$/;"	v	typeref:typename:vec4
 VAO	graphics/model.h	/^	GLuint VAO;$/;"	m	struct:model	typeref:typename:GLuint
 VBO	graphics/model.h	/^	GLuint VBO;$/;"	m	struct:model	typeref:typename:GLuint
+WORLD_TO_OPENGL	main.c	/^mat4 WORLD_TO_OPENGL = {{1.0, 0.0, 0.0, 0.0},$/;"	v	typeref:typename:mat4
 __anon00cca4100108	physics/physics.h	/^typedef struct{$/;"	s
 __anon00cca4100208	physics/physics.h	/^typedef struct{$/;"	s
 __anon00cca4100303	physics/physics.h	/^typedef enum{$/;"	g
@@ -60,10 +64,11 @@ __anon83875f220108	ECS/entity.h	/^typedef struct{$/;"	s
 __anon83875f220208	ECS/entity.h	/^typedef struct{$/;"	s
 __anonbc4b17ea0108	ECS/system.h	/^typedef struct{$/;"	s
 __anond1af96540108	text/text.h	/^typedef struct{$/;"	s
+__anond1af96540208	text/text.h	/^typedef struct {$/;"	s
 __anonf8cc79ea0108	input/input.h	/^typedef struct{$/;"	s
 a	physics/physics.h	/^	hulltype a;$/;"	m	struct:__anon00cca4100408	typeref:typename:hulltype
 addEntityComponents	ECS/system.c	/^int addEntityComponents(systemCore * core, COMPTYPE type, COMPTYPE ID){$/;"	f	typeref:typename:int
-advance	text/text.h	/^	unsigned int advance;$/;"	m	struct:__anond1af96540108	typeref:typename:unsigned int
+advance	text/text.h	/^	vec2 advance;$/;"	m	struct:__anond1af96540108	typeref:typename:vec2
 arr_add	utility/array.c	/^int arr_add(  array * arr , void * element ){$/;"	f	typeref:typename:int
 arr_cleanup	utility/array.c	/^int arr_cleanup(array * arr){$/;"	f	typeref:typename:int
 arr_get	utility/array.h	/^#define arr_get(/;"	d
@@ -73,6 +78,8 @@ arr_remove	utility/array.c	/^int arr_remove( array * arr , int i ){$/;"	f	typere
 arr_set	utility/array.h	/^#define arr_set(/;"	d
 arr_shrink	utility/array.c	/^int arr_shrink( array * arr ){$/;"	f	typeref:typename:int
 array	utility/array.h	/^}array;$/;"	t	typeref:struct:__anon7a459cdd0108
+atlas_height	graphics/render.h	/^	GLuint atlas_height;$/;"	m	struct:__anon7b86449b0308	typeref:typename:GLuint
+atlas_width	graphics/render.h	/^	GLuint atlas_width;$/;"	m	struct:__anon7b86449b0308	typeref:typename:GLuint
 avgTime	schedule/schedule.h	/^	double avgTime;$/;"	m	struct:__anon7e386f240108	typeref:typename:double
 batchArrays	graphics/render.h	/^	array batchArrays;$/;"	m	struct:__anon7b86449b0308	typeref:typename:array
 batched_render	graphics/render.c	/^int batched_render(int model_index){$/;"	f	typeref:typename:int
@@ -83,9 +90,8 @@ cam	graphics/render.h	/^	camera cam;$/;"	m	struct:__anon7b86449b0208	typeref:typ
 cam	graphics/render.h	/^	camera cam;$/;"	m	struct:__anon7b86449b0308	typeref:typename:camera
 camera	graphics/render.h	/^}camera;$/;"	t	typeref:struct:__anon7b86449b0108
 capacity	utility/array.h	/^	size_t capacity;$/;"	m	struct:__anon7a459cdd0108	typeref:typename:size_t
-char2char	text/text.c	/^character char2char[N_SUPPORTED_ASCII_CHARS];$/;"	v	typeref:typename:character[]
-charToCharacter	text/text.c	/^character charToCharacter(FT_Face face, char c){$/;"	f	typeref:typename:character
-character	text/text.h	/^}character;$/;"	t	typeref:struct:__anond1af96540108
+char2char	text/text.c	/^charinfo char2char[N_SUPPORTED_ASCII_CHARS];$/;"	v	typeref:typename:charinfo[]
+charinfo	text/text.h	/^}charinfo;$/;"	t	typeref:struct:__anond1af96540108
 comp_physics	physics/physics.h	/^}comp_physics;$/;"	t	typeref:struct:__anon00cca4100508
 comp_pos	physics/physics.h	/^}comp_pos;$/;"	t	typeref:struct:__anon00cca4100208
 comp_render	graphics/model.h	/^}comp_render;$/;"	t	typeref:struct:__anon34a11cec0108
@@ -106,6 +112,11 @@ file_contents	utility/fileload.c	/^void *file_contents(const char *filename){$/;
 forward	graphics/render.h	/^	vec4 forward;$/;"	m	struct:__anon7b86449b0108	typeref:typename:vec4
 fov	graphics/render.h	/^	float fov;$/;"	m	struct:__anon7b86449b0108	typeref:typename:float
 framebuffer_size_callback	callbacks.c	/^void framebuffer_size_callback(GLFWwindow* window, int width, int height)$/;"	f	typeref:typename:void
+glyphEBO	graphics/render.h	/^	GLuint glyphEBO;$/;"	m	struct:__anon7b86449b0308	typeref:typename:GLuint
+glyphProgram	graphics/render.h	/^	GLuint glyphProgram;$/;"	m	struct:__anon7b86449b0308	typeref:typename:GLuint
+glyphTex	graphics/render.h	/^	GLuint glyphTex;$/;"	m	struct:__anon7b86449b0308	typeref:typename:GLuint
+glyphVAO	graphics/render.h	/^	GLuint glyphVAO;$/;"	m	struct:__anon7b86449b0308	typeref:typename:GLuint
+glyphVBO	graphics/render.h	/^	GLuint glyphVBO;$/;"	m	struct:__anon7b86449b0308	typeref:typename:GLuint
 h	physics/physics.h	/^	hull h;$/;"	m	struct:__anon00cca4100508	typeref:typename:hull
 handleKey	input/input.c	/^int handleKey(inputSystem * insys, int key, int scancode, int action, int mods){$/;"	f	typeref:typename:int
 height	graphics/render.h	/^	int height;$/;"	m	struct:__anon7b86449b0208	typeref:typename:int
@@ -123,7 +134,7 @@ initPosComp	physics/physics.c	/^comp_pos initPosComp(COMPTYPE ID){$/;"	f	typeref
 initRenderer	graphics/render.c	/^int initRenderer(renderSystem * output, int width, int height, char * windowName){$/;"	f	typeref:typename:int
 initScheduler	schedule/schedule.c	/^int initScheduler(scheduleSystem * sched){$/;"	f	typeref:typename:int
 initSystems	ECS/system.c	/^int initSystems(systemCore * core){$/;"	f	typeref:typename:int
-initText	text/text.c	/^int initText(){$/;"	f	typeref:typename:int
+initText	text/text.c	/^int initText(renderSystem * Render){$/;"	f	typeref:typename:int
 inputSystem	input/input.h	/^}inputSystem;$/;"	t	typeref:struct:__anonf8cc79ea0108
 inputs	input/input.h	/^	int inputs[MAX_NUM_INPUTS];$/;"	m	struct:__anonf8cc79ea0108	typeref:typename:int[]
 inputtype	input/input.h	/^enum inputtype{$/;"	g
@@ -136,7 +147,7 @@ linkProgram	graphics/shader.c	/^GLuint linkProgram(GLuint vertShader, GLuint fra
 loadNewModel	graphics/model.c	/^int loadNewModel(renderSystem * sys, char* filename){$/;"	f	typeref:typename:int
 loadOBJmodel	utility/objload.c	/^int loadOBJmodel(model * Model, const char * filename){$/;"	f	typeref:typename:int
 main	main.c	/^int main(int argc, char * argv[]){$/;"	f	typeref:typename:int
-makeCharAtlas	text/text.c	/^int makeCharAtlas(FT_Face face){$/;"	f	typeref:typename:int
+makeCharAtlas	text/text.c	/^int makeCharAtlas(renderSystem * Render, FT_Face face){$/;"	f	typeref:typename:int
 make_entity	ECS/system.c	/^int make_entity(systemCore * core, COMPTYPE type){$/;"	f	typeref:typename:int
 mass	physics/physics.h	/^	double mass;$/;"	m	struct:__anon00cca4100508	typeref:typename:double
 mat4_rotate	utility/maths.c	/^void mat4_rotate(vec4 axis, float angle, mat4 dest){$/;"	f	typeref:typename:void
@@ -165,7 +176,9 @@ render	schedule/schedule.h	/^	render,$/;"	e	enum:schedevent
 renderComps	graphics/render.h	/^	array renderComps;$/;"	m	struct:__anon7b86449b0308	typeref:typename:array
 renderStep	schedule/schedule.h	/^	double renderStep;$/;"	m	struct:__anon7e386f240108	typeref:typename:double
 renderSystem	graphics/render.h	/^}renderSystem;$/;"	t	typeref:struct:__anon7b86449b0308
+render_text	text/text.c	/^void render_text(renderSystem * render, const char *text, float x, float y, float sx, float sy) /;"	f	typeref:typename:void
 right	graphics/render.h	/^	vec4 right;$/;"	m	struct:__anon7b86449b0108	typeref:typename:vec4
+s	text/text.h	/^    GLfloat s;$/;"	m	struct:__anond1af96540208	typeref:typename:GLfloat
 schedevent	schedule/schedule.h	/^enum schedevent{$/;"	g
 scheduleSystem	schedule/schedule.h	/^}scheduleSystem;$/;"	t	typeref:struct:__anon7e386f240108
 size	text/text.h	/^	vec2 size;$/;"	m	struct:__anond1af96540108	typeref:typename:vec2
@@ -173,9 +186,11 @@ size	utility/array.h	/^	size_t size;$/;"	m	struct:__anon7a459cdd0108	typeref:typ
 sol2	Makefile	/^sol2:$/;"	t
 sphere	physics/physics.h	/^	sphere,$/;"	e	enum:__anon00cca4100303
 systemCore	ECS/system.h	/^}systemCore;$/;"	t	typeref:struct:__anonbc4b17ea0108
+t	text/text.h	/^    GLfloat t;$/;"	m	struct:__anond1af96540208	typeref:typename:GLfloat
+text_point	text/text.h	/^}text_point;$/;"	t	typeref:struct:__anond1af96540208
 texture	graphics/model.h	/^	GLuint texture;$/;"	m	struct:model	typeref:typename:GLuint
-textureID	text/text.h	/^	unsigned int textureID;$/;"	m	struct:__anond1af96540108	typeref:typename:unsigned int
 transform	physics/physics.h	/^	mat4 transform;$/;"	m	struct:__anon00cca4100208	typeref:typename:mat4
+tx	text/text.h	/^	float tx; \/\/ x offset of glyph in texture coordinates$/;"	m	struct:__anond1af96540108	typeref:typename:float
 type	ECS/entity.h	/^	COMPTYPE type;$/;"	m	struct:__anon83875f220108	typeref:typename:COMPTYPE
 up	graphics/render.h	/^	vec4 up;$/;"	m	struct:__anon7b86449b0108	typeref:typename:vec4
 updateCam	graphics/render.c	/^int updateCam(camera * cam){$/;"	f	typeref:typename:int
@@ -187,3 +202,5 @@ width	graphics/render.h	/^	int width;$/;"	m	struct:__anon7b86449b0208	typeref:ty
 width	main.c	/^int width = 1080;$/;"	v	typeref:typename:int
 win	graphics/render.h	/^	window win;$/;"	m	struct:__anon7b86449b0308	typeref:typename:window
 window	graphics/render.h	/^}window;$/;"	t	typeref:struct:__anon7b86449b0208
+x	text/text.h	/^    GLfloat x;$/;"	m	struct:__anond1af96540208	typeref:typename:GLfloat
+y	text/text.h	/^    GLfloat y;$/;"	m	struct:__anond1af96540208	typeref:typename:GLfloat

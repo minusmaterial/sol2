@@ -5,6 +5,8 @@ layout(location = 1) in vec2 tex;
 layout(location = 2) in vec3 norm;
 
 out vec2 texcoord;
+out vec3 fnorm;
+out vec3 fpos;
 
 uniform mat4 MVP;
 
@@ -12,4 +14,6 @@ void main()
 {
 	gl_Position =  MVP*vec4(pos, 1.0);
 	texcoord = tex;
+	fnorm = (MVP*vec4(norm, 0.0)).xyz;
+	fpos = gl_Position.xyz;
 }

@@ -1,12 +1,19 @@
 #version 330 core
 
-out vec3 fragColour;
-
 in vec2 texcoord;
-uniform sampler2D textureSampler;
+in vec3 fnorm;
+in vec3 fpos;
+uniform sampler2D tex;
 
+out vec4 fragColour;
 
 void main()
 {
-	fragColour = vec3(texture(textureSampler, texcoord));
+	float pi = 3.1416;
+	vec3 texcol = texture(tex, texcoord).xyz;
+	//vec3 texcol = vec3(sin(fnorm.x * 4), sin(fnorm.y * 4), sin(fnorm.z * 4));
+	float ambient = 0.1;
+	float diffuse = clamp(dot(fnorm, vec3(0, 1, 0)),0,1);
+	float brightness = clamp(ambient + diffuse, 0, 1);
+	fragColour = vec4(brightness * texcol, 1.0);
 }

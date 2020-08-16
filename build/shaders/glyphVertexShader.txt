@@ -4,6 +4,7 @@ out vec2 texcoords;
 
 //uniform vec3 textColor;
 
+
 void main()
 {    
 	gl_Position = vec4(vertex.xy, 0, 1);

@@ -9,9 +9,13 @@
 #include "../ECS/entity.h"
 #include "../physics/physics.h"
 
+#define SCREEN_TEXT_BUFFER_SIZE 100
+
 extern vec4 RIGHT;
 extern vec4 UP;
 extern vec4 FORWARD;
+
+extern mat4 WORLD_TO_OPENGL;
 
 typedef struct {
 	vec4 pos;
@@ -36,7 +40,18 @@ typedef struct {
 typedef struct {
 	window win;
 	GLuint program;
+
 	GLuint glyphProgram;
+	GLuint glyphTex;
+	GLuint glyphVAO;
+	GLuint glyphVBO;
+	GLuint glyphEBO;
+
+	GLuint atlas_width;
+	GLuint atlas_height;
+
+	char text_buffer[SCREEN_TEXT_BUFFER_SIZE];
+
 	array models;
 	array batchArrays;
 	camera cam;

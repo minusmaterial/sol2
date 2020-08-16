@@ -38,9 +38,7 @@ int initRenderer(renderSystem * output, int width, int height, char * windowName
 	//setting Callbacks
 	//framebuffer_size_callback comes from callbacks.h
 	glfwSetFramebufferSizeCallback(output->win.GLFWID, framebuffer_size_callback); 
-	//I would rather put this in initInput, as that fits better conceptually, but 
-	//given that in fact all callbacks are part of GLFW (and we need the renderer
-	//info) It'll have to go here. 
+	//I would rather put this in initInput, as that fits better conceptually, but given that in fact all callbacks are part of GLFW (and we need the renderer info) It'll have to go here. 
 	glfwSetKeyCallback(output->win.GLFWID, key_callback); 
 
 	//shader setup
@@ -56,6 +54,20 @@ int initRenderer(renderSystem * output, int width, int height, char * windowName
 		GL_FRAGMENT_SHADER);
 	output->glyphProgram = linkProgram(textvShader, textfShader);
 
+	glGenBuffers(1, &(output->glyphVBO));
+	glGenVertexArrays(1, &(output->glyphVAO));
+
+	glBindVertexArray(output->glyphVAO);
+
+	glBindBuffer(GL_ARRAY_BUFFER, output->glyphVBO);
+
+	glEnableVertexAttribArray(output->glyphVAO);
+	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 8*sizeof(GLfloat), (void*)(0*sizeof(GLfloat)));
+	glBindVertexArray(0);
+
+	//Setting blend modes- these are global, enabling and configuring transparency.  Might have to change throughout frames at some point.
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  
 
 	//end opengl calls
 	output->models  = arr_init(1, sizeof(model));
@@ -127,6 +139,7 @@ camera initCam(vec4 pos, mat4  orientation, float fov, float ratio){
 	glm_mat4_mulv(cam.orientation, UP, cam.up);
 
 	glm_look(cam.pos, cam.forward, cam.up, cam.view);
+	//glm_mat4_mul(cam.view, WORLD_TO_OPENGL, cam.view);
 
 	glm_perspective(
 		cam.fov, 
@@ -139,6 +152,26 @@ camera initCam(vec4 pos, mat4  orientation, float fov, float ratio){
 	return cam;
 }
 
+int updateCam(camera * cam){
+	int err;
+	glm_mat4_mulv(cam->orientation, FORWARD, cam->forward);
+	glm_mat4_mulv(cam->orientation, RIGHT, cam->right);
+	glm_mat4_mulv(cam->orientation, UP, cam->up);
+	
+	//glm_mat4_identity(cam->view);
+	glm_mat4_copy(cam->orientation, cam->view);
+	mat4 temp;  glm_mat4_identity(temp);
+	glm_translate(temp, cam->pos);
+	glm_mat4_mul(temp, cam->view, cam->view);
+	glm_mat4_mulN((mat4 *[]){&WORLD_TO_OPENGL, &cam->view, &WORLD_TO_OPENGL}, 3, cam->view);
+	glm_mat4_inv(cam->view, cam->view);
+	//vec4 tempforward;
+	//glm_mat4_mulv(WORLD_TO_OPENGL, cam->forward, tempforward);
+	//glm_look(cam->pos, cam->forward, cam->up, cam->view);
+	//glm_lookat(cam->pos, (vec3){5.0, 0.0, 10.0}, cam->up, cam->view);
+	//glm_mat4_mul( cam->view, WORLD_TO_OPENGL,cam->view);
+	return err; };
+
 int updateCamPerspective(camera * cam, renderSystem * sys){
 	int err = 0;
 	glm_perspective(
@@ -148,14 +181,5 @@ int updateCamPerspective(camera * cam, renderSystem * sys){
 		cam->farval,
 		cam->perspective
 			);
-	return err;
-};
-
-int updateCam(camera * cam){
-	int err;
-	glm_mat4_mulv(cam->orientation, FORWARD, cam->forward);
-	glm_mat4_mulv(cam->orientation, RIGHT, cam->right);
-	glm_mat4_mulv(cam->orientation, UP, cam->up);
-	glm_look(cam->pos, cam->forward, cam->up, cam->view);
 	return err;
 };

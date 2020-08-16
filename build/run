@@ -1,1 +1,1 @@
-cd ../src && make && cd ../build && sol2
+cd ../src && make -B && cd ../build && ./sol2
