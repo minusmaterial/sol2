@@ -70,7 +70,10 @@ int main(int argc, char * argv[]){
 	glm_translate(modmat, model_pos);
 	glm_translate(modmat_2, model_pos_2);
 
-	loadNewModel(&(Sys->Render), "assets/sphere/sphere.i");
+	
+
+	//loadNewModel(&(Sys->Render), "assets/sphere/sphere.i");
+	loadNewModel(&(Sys->Render), "assets/pointer_arrow/pointer_arrow.i");
 	//loadNewModel(&(Sys->Render), "assets/hammer/hammer.i");
 	//loadNewModel(&(Sys->Render), "assets/tri/tri.i");
 	//loadNewModel(&(Sys->Render), "assets/shrum/shrum.i");
@@ -166,7 +169,7 @@ int main(int argc, char * argv[]){
 
 		updateCam(&(Sys->Render.cam));
 
-		glClearColor(0.0f,0.0f,0.08f,0.0f);
+		glClearColor(0.0f,0.0f,0.00f,0.0f);
 		//glClearColor(0.5f,0.5f,0.5f,0.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -214,21 +217,29 @@ int main(int argc, char * argv[]){
 		glUseProgram(Sys->Render.glyphProgram);
 		float sx = 1.5 / Sys->Render.win.width;
 		float sy = 1.5 / Sys->Render.win.height;
-		render_text(&Sys->Render,   8, 50, 1.5, 1.5,
-					"The quick fox jumps over the lazy dog", 0);
 		render_text(&Sys->Render, 
-				8,  100, 2, 2,  
+				8,  100, 1, 1,  
 				"camera is at %f, %f, %f\n", 
 				Sys->Render.cam.pos[0], 
 				Sys->Render.cam.pos[1], 
 				Sys->Render.cam.pos[2]);
 
+			render_text(&Sys->Render, 
+				8,  150, 1, 1,  
+				"%ld entities extant\n", 
+				Sys->Entity.entities.size);
+
+		for (int i = 0; i < Sys->Entity.entities.size; i++){
+		  	
+			render_text(&Sys->Render, 
+				8,  200 + i*50, 1, 1,  
+				"entity %d", 
+				(arr_get(entity, Sys->Entity.entities, i).ID));
+		}
+
 		glfwPollEvents();    
     	glfwSwapBuffers(Sys->Render.win.GLFWID);
 		//usleep(25000);
-
-
-
 	}
 	glfwTerminate();
 	return 1;

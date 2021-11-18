@@ -37,10 +37,10 @@ void _render_text(renderSystem * render, const char *text, float x, float y, flo
 void render_text(renderSystem * render,  float x, float y, float sx, float sy, const char *text, ...);
 
 #define render_text(renderer, x,y,sx1,sy1,format, ...) \
-	{   float tsxabcd = (float)sx1 / ((renderer)->win.width);\
-		float tsyabcd = (float)sy1 / ((renderer)->win.height);\
-		float txabcd = -1 + (float)x * tsxabcd ;\
-	    float tyabcd = 1 - (float)y * tsyabcd ;\
+	{   float tsxabcd = (float)(sx1) / ((renderer)->win.width);\
+		float tsyabcd = (float)(sy1) / ((renderer)->win.height);\
+		float txabcd = -1 + (float)(x) * tsxabcd ;\
+	    float tyabcd = 1 - (float)(y) * tsyabcd ;\
 		snprintf((renderer)->text_buffer, SCREEN_TEXT_BUFFER_SIZE, format, __VA_ARGS__); \
 		_render_text((renderer), (renderer)->text_buffer, txabcd,tyabcd,tsxabcd,tsyabcd);}
 

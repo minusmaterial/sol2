@@ -44,8 +44,11 @@ int make_entity(systemCore * core, COMPTYPE type){
 	return err;
 };
 int addEntityComponents(systemCore * core, COMPTYPE type, COMPTYPE ID){
-/*	for(i = 0; i < MAX_NUM_SYSTEMS; i++){
-		core->comparrays[i] 
+	for(int i = 0; i < MAX_NUM_SYSTEMS; i++){
+		printf("heavens preserve me %d\n", i);
+		if (!(type & (1<<i))) continue;
+		printf("This entity has a component of type %d.\n", i);
+		//core->comparrays[i] 
 	}
-	*/
+	
 }
